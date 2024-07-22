@@ -163,7 +163,7 @@ class DriverDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 @login_required
 def toggle_assign_to_car(request, pk):
-    driver = Driver.objects.get(id=request.user.id)
+    driver = Driver.objects.get_object_or_404(id=request.user.id)
     if (
             Car.objects.get(id=pk) in driver.cars.all()
     ):  # probably could check if car exists
